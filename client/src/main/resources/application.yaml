@@ -1,5 +1,8 @@
 
 testserv:
   service:
-#    endpoint: https://localhost:8443/testserv/service
-    endpoint: http://localhost:8080/testserv/service
+    endpoint: https://localhost:8443/testserv/service
+    key-store: classpath:keystore.jks
+    key-store-password: secret
+    key-password: secret
+

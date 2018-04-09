@@ -1,9 +1,10 @@
 
 server:
+  port: 8443
+  ssl:
+    key-store: classpath:keystore.jks
+    key-password: secret
+    key-alias: testserv-service
+    key-store-password: secret
   servlet:
     context-path: /testserv
-#  port: 8443
-#  ssl:
-#    key-store: classpath:testserv.jks
-#    key-password: 123456
-#    key-alias: testserv

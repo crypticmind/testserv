@@ -1,13 +1,16 @@
 package ar.com.crypticmind.testserv.client.backend
 
-import ar.com.crypticmind.testserv.client.config.ServiceConnector
+import ar.com.crypticmind.testserv.client.config.ServiceConnectorConfiguration
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
+import org.springframework.web.client.RestTemplate
 
 @Service
-class Testserv(private val serviceConnector: ServiceConnector) {
+class Testserv(
+        private val serviceConnectorConfiguration: ServiceConnectorConfiguration,
+        @Qualifier("serviceConnector") private val connector: RestTemplate) {
 
-    private val connector = serviceConnector.serviceConnector()
-    private val endpoint = serviceConnector.endpoint
+    private val endpoint = serviceConnectorConfiguration.endpoint
 
     fun getGreeting(name: String?): String {
         val uri = StringBuilder().append(endpoint).append("/test/hello")
