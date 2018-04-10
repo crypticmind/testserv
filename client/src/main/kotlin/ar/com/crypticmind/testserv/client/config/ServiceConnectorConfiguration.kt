@@ -32,12 +32,18 @@ class ServiceConnectorConfiguration {
     @NotBlank
     lateinit var keyPassword: String
 
+    @NotNull
+    lateinit var trustStore: Resource
+
+    @NotBlank
+    lateinit var trustStorePassword: String
+
     @Bean(name = [ "serviceConnector" ])
     fun serviceConnector(builder: RestTemplateBuilder): RestTemplate {
         val sslContext =
                 SSLContextBuilder()
                         .loadKeyMaterial(keyStore.url, keyStorePassword.toCharArray(), keyPassword.toCharArray())
-                        .loadTrustMaterial(keyStore.url, keyStorePassword.toCharArray())
+                        .loadTrustMaterial(trustStore.url, trustStorePassword.toCharArray())
                         .build()
         val socketFactory = SSLConnectionSocketFactory(sslContext)
         val httpClient = HttpClients.custom().setSSLSocketFactory(socketFactory).build()

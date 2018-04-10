@@ -6,5 +6,8 @@ server:
     key-password: secret
     key-alias: testserv-service
     key-store-password: secret
+    trust-store: classpath:truststore.jks
+    trust-store-password: secret
+    client-auth: need
   servlet:
     context-path: /testserv
